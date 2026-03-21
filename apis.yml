@@ -1,0 +1,7 @@
+aid: warner-bros-discovery
+url: https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml
+modified: '2026-03-21'
+apis: []
+common:
+  - type: Website
+    url: https://www.warner-bros-discovery.com
