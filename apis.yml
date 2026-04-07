@@ -1,7 +1,12 @@
 aid: warner-bros-discovery
-url: https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.warner-bros-discovery.com
+description: >-
+  Warner Bros. Discovery is a leading global media and entertainment company that
+  creates and distributes the world's most differentiated and complete portfolio of
+  branded content across television, film, and streaming.
