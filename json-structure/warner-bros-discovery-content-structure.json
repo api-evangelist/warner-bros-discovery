@@ -1,0 +1,28 @@
+{
+  "title": "WBD Content Delivery Structure",
+  "description": "Documentation of the WBD media content delivery data structure.",
+  "type": "object",
+  "fields": [
+    { "name": "id", "type": "string", "description": "Unique delivery identifier" },
+    { "name": "status", "type": "enum", "values": ["pending", "processing", "completed", "failed", "rejected"], "description": "Delivery status" },
+    { "name": "title", "type": "string", "description": "Content title", "required": true },
+    { "name": "contentType", "type": "enum", "values": ["feature", "series", "episode", "short", "documentary", "promotional"], "description": "Content type", "required": true },
+    { "name": "manifestPath", "type": "string", "description": "Path to MMC manifest" },
+    { "name": "createdAt", "type": "string", "description": "ISO 8601 creation timestamp" },
+    { "name": "updatedAt", "type": "string", "description": "ISO 8601 last update timestamp" },
+    {
+      "name": "assets",
+      "type": "array",
+      "description": "Media assets in the delivery",
+      "itemType": "object",
+      "fields": [
+        { "name": "id", "type": "string" },
+        { "name": "type", "type": "enum", "values": ["video", "audio", "subtitle", "image", "document"] },
+        { "name": "filename", "type": "string" },
+        { "name": "size", "type": "integer", "description": "File size in bytes" },
+        { "name": "checksum", "type": "string", "description": "MD5 checksum" },
+        { "name": "languageCode", "type": "string", "description": "BCP-47 language code" }
+      ]
+    }
+  ]
+}

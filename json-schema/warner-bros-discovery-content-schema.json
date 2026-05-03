@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/warner-bros-discovery/blob/main/json-schema/warner-bros-discovery-content-schema.json",
+  "title": "Warner Bros. Discovery Content Delivery",
+  "description": "Schema for a WBD media content delivery submission.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique delivery identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "processing", "completed", "failed", "rejected"],
+      "description": "Current delivery status"
+    },
+    "title": {
+      "type": "string",
+      "description": "Content title"
+    },
+    "contentType": {
+      "type": "string",
+      "enum": ["feature", "series", "episode", "short", "documentary", "promotional"],
+      "description": "Type of content"
+    },
+    "manifestPath": {
+      "type": "string",
+      "description": "Path to the MovieLabs MMC manifest file"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Delivery creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "assets": {
+      "type": "array",
+      "description": "Media assets included in the delivery",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["video", "audio", "subtitle", "image", "document"]
+          },
+          "filename": { "type": "string" },
+          "size": { "type": "integer" },
+          "checksum": { "type": "string" },
+          "languageCode": { "type": "string" },
+          "uploadedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["id", "type", "filename"]
+      }
+    }
+  },
+  "required": ["title", "contentType"]
+}

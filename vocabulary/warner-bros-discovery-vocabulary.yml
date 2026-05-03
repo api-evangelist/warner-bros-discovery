@@ -1,0 +1,154 @@
+vocabulary:
+  name: Warner Bros. Discovery API Vocabulary
+  description: >-
+    Core vocabulary for the Warner Bros. Discovery Content Partner API and
+    media supply chain operations, covering content types, delivery statuses,
+    asset types, metadata standards, and WBD brand portfolio.
+  version: "1.0.0"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+terms:
+  # Content Types
+  - term: feature
+    label: Feature Film
+    category: Content Type
+    description: Full-length theatrical feature film for distribution on WBD platforms.
+
+  - term: series
+    label: Series
+    category: Content Type
+    description: A complete television or streaming series including all seasons.
+
+  - term: episode
+    label: Episode
+    category: Content Type
+    description: Individual episode of a television or streaming series.
+
+  - term: short
+    label: Short Film
+    category: Content Type
+    description: Short-form video content under 40 minutes in length.
+
+  - term: documentary
+    label: Documentary
+    category: Content Type
+    description: Non-fiction documentary film or series.
+
+  - term: promotional
+    label: Promotional
+    category: Content Type
+    description: Marketing and promotional materials (trailers, clips, featurettes).
+
+  # Delivery Statuses
+  - term: pending
+    label: Pending
+    category: Delivery Status
+    description: Delivery has been submitted and is awaiting processing.
+
+  - term: processing
+    label: Processing
+    category: Delivery Status
+    description: Delivery is currently being ingested and validated.
+
+  - term: completed
+    label: Completed
+    category: Delivery Status
+    description: Delivery has been successfully ingested and validated.
+
+  - term: failed
+    label: Failed
+    category: Delivery Status
+    description: Delivery processing failed due to technical errors.
+
+  - term: rejected
+    label: Rejected
+    category: Delivery Status
+    description: Delivery was rejected due to metadata or content specification violations.
+
+  # Asset Types
+  - term: video
+    label: Video Asset
+    category: Asset Type
+    description: Video content file (MXF, MP4, MOV formats).
+
+  - term: audio
+    label: Audio Asset
+    category: Asset Type
+    description: Audio content file including dialogue, music, and effects tracks.
+
+  - term: subtitle
+    label: Subtitle/Caption Asset
+    category: Asset Type
+    description: Timed text file for subtitles or closed captions (SRT, TTML, etc.).
+
+  - term: image
+    label: Image Asset
+    category: Asset Type
+    description: Still image files for thumbnails, posters, and metadata art.
+
+  # Metadata Standards
+  - term: MMC
+    label: MovieLabs Media Manifest Core
+    category: Metadata Standard
+    description: >-
+      MovieLabs Media Manifest Core (MMC) specification used by WBD for
+      technical and configuration metadata in Automated Content Delivery (ACD).
+
+  - term: ACD
+    label: Automated Content Delivery
+    category: Delivery Method
+    description: >-
+      High-volume automated content delivery method using Aspera P2P transfer
+      with MMC metadata manifests.
+
+  - term: BCP-47
+    label: BCP-47 Language Tag
+    category: Standard
+    description: >-
+      IETF language tag standard (BCP 47) used for identifying language of
+      audio tracks, subtitle files, and metadata fields.
+
+  # WBD Brands
+  - term: Max
+    label: Max
+    category: WBD Brand
+    description: >-
+      WBD's premium streaming service combining HBO, Warner Bros., and
+      Discovery content.
+
+  - term: HBO
+    label: HBO
+    category: WBD Brand
+    description: HBO premium television and streaming content brand.
+
+  - term: CNN
+    label: CNN
+    category: WBD Brand
+    description: CNN news and documentary content brand.
+
+  - term: Discovery
+    label: Discovery Channel
+    category: WBD Brand
+    description: Discovery Channel factual and reality programming brand.
+
+  - term: Warner Bros.
+    label: Warner Bros. Pictures
+    category: WBD Brand
+    description: Warner Bros. film studio and entertainment brand.
+
+categories:
+  - name: Content Type
+    description: Types of media content for WBD supply chain delivery
+  - name: Delivery Status
+    description: Processing lifecycle states for content deliveries
+  - name: Asset Type
+    description: Types of media asset files included in deliveries
+  - name: Metadata Standard
+    description: Technical metadata specifications and standards
+  - name: Delivery Method
+    description: Methods for delivering content to WBD supply chain
+  - name: Standard
+    description: Industry standards used in WBD integrations
+  - name: WBD Brand
+    description: Warner Bros. Discovery brand portfolio

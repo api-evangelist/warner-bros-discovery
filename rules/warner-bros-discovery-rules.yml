@@ -1,0 +1,102 @@
+extends: spectral:oas
+rules:
+  wbd-operation-ids-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  wbd-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*(\\s[A-Z][a-zA-Z0-9]*)*$"
+
+  wbd-operation-tags-required:
+    description: All operations must have at least one tag
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  wbd-paths-versioned:
+    description: All API paths must include a version prefix (/v1/, /v2/, etc.)
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^\\/v[0-9]+"
+
+  wbd-oauth2-security:
+    description: WBD APIs use OAuth2 client credentials for authentication
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+
+  wbd-response-200-or-201:
+    description: All operations must define a successful 2xx response
+    severity: error
+    given: "$.paths[*][*].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["202"]
+
+  wbd-error-responses-defined:
+    description: Operations should define 401 and 404 error responses
+    severity: warn
+    given: "$.paths[*][*].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required:
+            - "401"
+
+  wbd-info-description:
+    description: Info object must have a description
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  wbd-response-schema:
+    description: Successful responses must define a schema
+    severity: warn
+    given: "$.paths[*][*].responses['200'].content['application/json']"
+    then:
+      field: schema
+      function: truthy
+
+  wbd-pagination-parameters:
+    description: Collection GET endpoints should support limit and offset parameters
+    severity: warn
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - limit
+          - offset
+          - page
+          - pageSize
+          - cursor

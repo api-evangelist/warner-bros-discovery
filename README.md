@@ -1,33 +1,86 @@
-# Warner Bros. Discovery (warner-bros-discovery)
-Warner Bros. Discovery is a Fortune 500 company. This repository captures the APIs, developer tools, and machine-readable API artifacts for Warner Bros. Discovery.
+# Warner Bros. Discovery
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml)
+Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes branded content across television, film, and streaming. WBD operates Max, HBO, Warner Bros. Pictures, CNN, Discovery, TNT, TBS, and many other brands. The company provides content partner APIs for media supply chain integration.
 
-## Scope
-
-- **Type:** Contract
-- **Position:** Consuming
-- **Access:** 3rd-Party
-
-## Tags:
-
- - Fortune 500
-
-## Timestamps
-
-- **Created:** 2026-03-21
-- **Modified:** 2026-03-21
+- **Website:** [https://www.wbd.com/](https://www.wbd.com/)
+- **Content Partner Hub:** [https://partnerhub.warnermedia.com/](https://partnerhub.warnermedia.com/)
+- **GitHub (WarnerMedia):** [https://github.com/WarnerMedia](https://github.com/WarnerMedia)
+- **GitHub (Warner Bros.):** [https://github.com/warnerbros](https://github.com/warnerbros)
 
 ## APIs
 
-No public APIs have been documented yet. Contributions welcome.
+### Warner Bros. Discovery Content Partner API
 
-## Common Properties
+API for content partners to deliver media assets and metadata to WBD's media supply chain. Supports Automated Content Delivery (ACD) using MovieLabs Media Manifest Core (MMC).
 
-- [Website](https://www.warner-bros-discovery.com)
+- **Base URL:** `https://api.warnermediasupplychain.com`
+- **Authentication:** OAuth 2.0 Client Credentials
+- **Partner Hub:** [https://partnerhub.warnermedia.com/specifications-and-guides](https://partnerhub.warnermedia.com/specifications-and-guides)
+
+## Artifacts
+
+### OpenAPI Specifications
+
+| Spec | Description |
+|------|-------------|
+| [warner-bros-discovery-content-partner-openapi.yml](openapi/warner-bros-discovery-content-partner-openapi.yml) | Content Partner API — deliveries, metadata, assets, validation |
+
+### Spectral Rules
+
+| Ruleset | Description |
+|---------|-------------|
+| [warner-bros-discovery-rules.yml](rules/warner-bros-discovery-rules.yml) | Spectral ruleset for WBD API conventions |
+
+### Naftiko Capabilities
+
+#### Shared Per-API Definitions
+
+| File | Description |
+|------|-------------|
+| [capabilities/shared/content-partner.yaml](capabilities/shared/content-partner.yaml) | WBD Content Partner API definition |
+
+#### Workflow Capabilities
+
+| Workflow | Description | Tools |
+|----------|-------------|-------|
+| [content-delivery.yaml](capabilities/content-delivery.yaml) | Content delivery and supply chain operations | 6 tools |
+
+### JSON Schemas
+
+| Schema | Description |
+|--------|-------------|
+| [warner-bros-discovery-content-schema.json](json-schema/warner-bros-discovery-content-schema.json) | Content delivery data schema |
+
+### JSON Structures
+
+| Structure | Description |
+|-----------|-------------|
+| [warner-bros-discovery-content-structure.json](json-structure/warner-bros-discovery-content-structure.json) | Content delivery structure documentation |
+
+### JSON-LD Contexts
+
+| Context | Description |
+|---------|-------------|
+| [warner-bros-discovery-context.jsonld](json-ld/warner-bros-discovery-context.jsonld) | JSON-LD context (schema.org + MovieLabs aligned) |
+
+### Examples
+
+| Example | Description |
+|---------|-------------|
+| [warner-bros-discovery-listDeliveries-example.json](examples/warner-bros-discovery-listDeliveries-example.json) | List deliveries request/response example |
+
+### Vocabulary
+
+| File | Description |
+|------|-------------|
+| [warner-bros-discovery-vocabulary.yml](vocabulary/warner-bros-discovery-vocabulary.yml) | WBD content delivery vocabulary |
+
+## Open Source Projects
+
+- [gimme-aws-creds](https://github.com/WarnerMedia/gimme-aws-creds) — Python CLI for obtaining AWS credentials via Okta
+- [antiope-aws-module](https://github.com/WarnerMedia/antiope-aws-module) — AWS inventory and security tooling
+- [mux.js](https://github.com/warnerbros/mux.js) — JavaScript library for video segment parsing
 
 ## Maintainers
 
-**FN:** API Evangelist
-
-**Email:** info@apievangelist.com
+**Kin Lane** — [kin@apievangelist.com](mailto:kin@apievangelist.com)

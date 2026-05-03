@@ -1,0 +1,175 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "WBD Content Delivery Workflow"
+  description: >-
+    Unified workflow for Warner Bros. Discovery content delivery operations.
+    Enables content partners to submit media deliveries, validate metadata against
+    MMC specifications, track delivery status, and manage media assets through
+    WBD's media supply chain for distribution across Max, HBO, Warner Bros.,
+    Discovery, CNN, and other WBD brands.
+  tags:
+    - Warner Bros. Discovery
+    - Content Delivery
+    - Media Supply Chain
+    - Metadata
+    - Entertainment
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WBD_ACCESS_TOKEN: WBD_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: wbd-content
+      location: ./shared/content-partner.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: wbd-delivery-api
+      description: "Unified REST API for WBD content delivery and media supply chain operations."
+      resources:
+        - path: /v1/deliveries
+          name: deliveries
+          description: Content delivery management
+          operations:
+            - method: GET
+              name: list-deliveries
+              description: List all media content deliveries
+              call: "wbd-content.list-deliveries"
+              with:
+                status: "rest.status"
+                limit: "rest.limit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-delivery
+              description: Submit a new content delivery
+              call: "wbd-content.create-delivery"
+              with:
+                title: "rest.title"
+                contentType: "rest.contentType"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/deliveries/{deliveryId}/status
+          name: delivery-status
+          description: Delivery processing status
+          operations:
+            - method: GET
+              name: get-delivery-status
+              description: Get processing status for a delivery
+              call: "wbd-content.get-delivery-status"
+              with:
+                deliveryId: "rest.deliveryId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/metadata/validate
+          name: metadata-validation
+          description: Metadata validation
+          operations:
+            - method: POST
+              name: validate-metadata
+              description: Validate MMC metadata before submission
+              call: "wbd-content.validate-metadata"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/assets
+          name: assets
+          description: Media asset management
+          operations:
+            - method: GET
+              name: list-assets
+              description: List media assets
+              call: "wbd-content.list-assets"
+              with:
+                deliveryId: "rest.deliveryId"
+                assetType: "rest.assetType"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: wbd-delivery-mcp
+      transport: http
+      description: "MCP server for AI-assisted WBD content delivery and supply chain operations."
+      tools:
+        - name: list-deliveries
+          description: List all media content deliveries in the WBD partner supply chain
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wbd-content.list-deliveries"
+          with:
+            status: "tools.status"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-delivery
+          description: Submit a new media content delivery to WBD supply chain
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "wbd-content.create-delivery"
+          with:
+            title: "tools.title"
+            contentType: "tools.contentType"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-delivery-status
+          description: Get the current processing status of a WBD content delivery
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wbd-content.get-delivery-status"
+          with:
+            deliveryId: "tools.deliveryId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: validate-metadata
+          description: Validate MMC metadata against WBD specifications before submission
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wbd-content.validate-metadata"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: submit-metadata
+          description: Submit MovieLabs MMC metadata for a content delivery
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "wbd-content.submit-metadata"
+          with:
+            deliveryId: "tools.deliveryId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-assets
+          description: List media assets associated with WBD deliveries
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wbd-content.list-assets"
+          with:
+            deliveryId: "tools.deliveryId"
+            assetType: "tools.assetType"
+          outputParameters:
+            - type: object
+              mapping: "$."

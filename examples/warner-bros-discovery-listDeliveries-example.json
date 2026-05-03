@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.warnermediasupplychain.com/v1/deliveries",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+      "Accept": "application/json"
+    },
+    "params": {
+      "status": "processing",
+      "limit": "10"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "del-abc123",
+          "status": "processing",
+          "title": "Example Feature Film",
+          "contentType": "feature",
+          "manifestPath": "/deliveries/2026/q2/example-feature-mmc.xml",
+          "createdAt": "2026-05-01T10:30:00Z",
+          "updatedAt": "2026-05-01T11:45:00Z",
+          "assets": [
+            {
+              "id": "asset-001",
+              "type": "video",
+              "filename": "example-feature-4k-hdr.mxf",
+              "size": 48318382080,
+              "checksum": "d41d8cd98f00b204e9800998ecf8427e",
+              "uploadedAt": "2026-05-01T10:00:00Z"
+            },
+            {
+              "id": "asset-002",
+              "type": "audio",
+              "filename": "example-feature-en-51.wav",
+              "size": 1073741824,
+              "languageCode": "en",
+              "uploadedAt": "2026-05-01T10:05:00Z"
+            },
+            {
+              "id": "asset-003",
+              "type": "subtitle",
+              "filename": "example-feature-en-sdr.srt",
+              "size": 45678,
+              "languageCode": "en",
+              "uploadedAt": "2026-05-01T10:10:00Z"
+            }
+          ]
+        }
+      ],
+      "total": 1,
+      "limit": 10,
+      "offset": 0
+    }
+  }
+}

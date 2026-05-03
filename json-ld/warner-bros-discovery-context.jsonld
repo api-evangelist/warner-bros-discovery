@@ -1,0 +1,61 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "wbd": "https://partnerhub.warnermedia.com/#",
+    "mmc": "http://www.movielabs.com/md/manifest/v1.8#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "ContentDelivery": "wbd:ContentDelivery",
+    "MediaAsset": "schema:MediaObject",
+    "VideoAsset": "schema:VideoObject",
+    "AudioAsset": "schema:AudioObject",
+    "SubtitleAsset": "schema:MediaObject",
+
+    "id": "@id",
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "contentType": {
+      "@id": "schema:additionalType",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "wbd:deliveryStatus",
+      "@type": "xsd:string"
+    },
+    "manifestPath": {
+      "@id": "mmc:manifestLocation",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "filename": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "size": {
+      "@id": "schema:contentSize",
+      "@type": "xsd:integer"
+    },
+    "languageCode": {
+      "@id": "schema:inLanguage",
+      "@type": "xsd:string"
+    },
+    "checksum": {
+      "@id": "wbd:checksum",
+      "@type": "xsd:string"
+    },
+    "assets": {
+      "@id": "schema:associatedMedia",
+      "@container": "@set"
+    }
+  }
+}
