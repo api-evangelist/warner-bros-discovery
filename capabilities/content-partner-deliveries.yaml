@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Warner Bros. Discovery Content Partner API — Deliveries
+  description: 'Warner Bros. Discovery Content Partner API — Deliveries. 3 operations. Lead operation: List Deliveries. Self-contained
+    Naftiko capability covering one Warner Bros Discovery business surface.'
+  tags:
+  - Warner Bros Discovery
+  - Deliveries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WARNER_BROS_DISCOVERY_API_KEY: WARNER_BROS_DISCOVERY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: content-partner-deliveries
+    baseUri: https://api.warnermediasupplychain.com
+    description: Warner Bros. Discovery Content Partner API — Deliveries business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-deliveries
+      path: /v1/deliveries
+      operations:
+      - name: listdeliveries
+        method: GET
+        description: List Deliveries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter deliveries by status
+        - name: startDate
+          in: query
+          type: string
+          description: Filter deliveries created on or after this date
+        - name: endDate
+          in: query
+          type: string
+          description: Filter deliveries created before or on this date
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+      - name: createdelivery
+        method: POST
+        description: Create Delivery
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-deliveries-deliveryId
+      path: /v1/deliveries/{deliveryId}
+      operations:
+      - name: getdelivery
+        method: GET
+        description: Get Delivery
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deliveryId
+          in: path
+          type: string
+          description: Unique delivery identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WARNER_BROS_DISCOVERY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: content-partner-deliveries-rest
+    port: 8080
+    description: REST adapter for Warner Bros. Discovery Content Partner API — Deliveries. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/deliveries
+      name: v1-deliveries
+      description: REST surface for v1-deliveries.
+      operations:
+      - method: GET
+        name: listdeliveries
+        description: List Deliveries
+        call: content-partner-deliveries.listdeliveries
+        with:
+          status: rest.status
+          startDate: rest.startDate
+          endDate: rest.endDate
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdelivery
+        description: Create Delivery
+        call: content-partner-deliveries.createdelivery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/deliveries/{deliveryid}
+      name: v1-deliveries-deliveryid
+      description: REST surface for v1-deliveries-deliveryId.
+      operations:
+      - method: GET
+        name: getdelivery
+        description: Get Delivery
+        call: content-partner-deliveries.getdelivery
+        with:
+          deliveryId: rest.deliveryId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: content-partner-deliveries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Warner Bros. Discovery Content Partner API — Deliveries. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: list-deliveries
+      description: List Deliveries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: content-partner-deliveries.listdeliveries
+      with:
+        status: tools.status
+        startDate: tools.startDate
+        endDate: tools.endDate
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-delivery
+      description: Create Delivery
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: content-partner-deliveries.createdelivery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-delivery
+      description: Get Delivery
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: content-partner-deliveries.getdelivery
+      with:
+        deliveryId: tools.deliveryId
+      outputParameters:
+      - type: object
+        mapping: $.

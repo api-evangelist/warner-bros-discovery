@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Warner Bros. Discovery Content Partner API — Status
+  description: 'Warner Bros. Discovery Content Partner API — Status. 1 operations. Lead operation: Get Delivery Status. Self-contained
+    Naftiko capability covering one Warner Bros Discovery business surface.'
+  tags:
+  - Warner Bros Discovery
+  - Status
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WARNER_BROS_DISCOVERY_API_KEY: WARNER_BROS_DISCOVERY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: content-partner-status
+    baseUri: https://api.warnermediasupplychain.com
+    description: Warner Bros. Discovery Content Partner API — Status business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-deliveries-deliveryId-status
+      path: /v1/deliveries/{deliveryId}/status
+      operations:
+      - name: getdeliverystatus
+        method: GET
+        description: Get Delivery Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deliveryId
+          in: path
+          type: string
+          description: Unique delivery identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WARNER_BROS_DISCOVERY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: content-partner-status-rest
+    port: 8080
+    description: REST adapter for Warner Bros. Discovery Content Partner API — Status. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/deliveries/{deliveryid}/status
+      name: v1-deliveries-deliveryid-status
+      description: REST surface for v1-deliveries-deliveryId-status.
+      operations:
+      - method: GET
+        name: getdeliverystatus
+        description: Get Delivery Status
+        call: content-partner-status.getdeliverystatus
+        with:
+          deliveryId: rest.deliveryId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: content-partner-status-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Warner Bros. Discovery Content Partner API — Status. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: get-delivery-status
+      description: Get Delivery Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: content-partner-status.getdeliverystatus
+      with:
+        deliveryId: tools.deliveryId
+      outputParameters:
+      - type: object
+        mapping: $.
