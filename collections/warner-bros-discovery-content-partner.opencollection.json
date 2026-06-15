@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Warner Bros. Discovery Content Partner API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.warnermedia.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deliveries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Deliveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.warnermediasupplychain.com/v1/deliveries",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter deliveries by status"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter deliveries created on or after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter deliveries created before or on this date"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "List all media content deliveries submitted by the partner. Supports filtering by status, date range, and content type."
+        },
+        {
+          "info": {
+            "name": "Create Delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.warnermediasupplychain.com/v1/deliveries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new content delivery to Warner Bros. Discovery's media supply chain. The delivery contains references to media assets and a MovieLabs MMC manifest with metadata."
+        },
+        {
+          "info": {
+            "name": "Get Delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.warnermediasupplychain.com/v1/deliveries/:deliveryId",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique delivery identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details and current status of a specific delivery."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Delivery Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.warnermediasupplychain.com/v1/deliveries/:deliveryId/status",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique delivery identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the processing status of a delivery including validation results, ingest progress, and any error messages."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.warnermediasupplychain.com/v1/metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit content metadata using the MovieLabs Media Manifest Core (MMC) format. Used for Automated Content Delivery (ACD) integration."
+        },
+        {
+          "info": {
+            "name": "Validate Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.warnermediasupplychain.com/v1/metadata/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate metadata against WBD's MMC schema requirements before submission. Returns validation errors and warnings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.warnermediasupplychain.com/v1/assets",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets by delivery ID"
+              },
+              {
+                "name": "assetType",
+                "value": "",
+                "type": "query",
+                "description": "Filter assets by type"
+              }
+            ]
+          },
+          "docs": "List media assets available in the partner's delivery account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

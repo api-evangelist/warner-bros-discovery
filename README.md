@@ -1,86 +1,68 @@
-# Warner Bros. Discovery
+# Warner Bros. Discovery (warner-bros-discovery)
 
-Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes branded content across television, film, and streaming. WBD operates Max, HBO, Warner Bros. Pictures, CNN, Discovery, TNT, TBS, and many other brands. The company provides content partner APIs for media supply chain integration.
+Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes the world's most differentiated and complete portfolio of branded content across television, film, and streaming. WBD operates the Max streaming platform, Warner Bros. film studio, HBO, CNN, Discovery, TNT, TBS, and many other brands. The company provides content partner APIs for media supply chain integration and maintains open source projects through its engineering teams.
 
-- **Website:** [https://www.wbd.com/](https://www.wbd.com/)
-- **Content Partner Hub:** [https://partnerhub.warnermedia.com/](https://partnerhub.warnermedia.com/)
-- **GitHub (WarnerMedia):** [https://github.com/WarnerMedia](https://github.com/WarnerMedia)
-- **GitHub (Warner Bros.):** [https://github.com/warnerbros](https://github.com/warnerbros)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Entertainment
+- Media
+- Streaming
+- Content
+- Television
+- Film
+
+## Timestamps
+
+- **Created:** 2026-03-21
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Warner Bros. Discovery Content Partner API
 
-API for content partners to deliver media assets and metadata to WBD's media supply chain. Supports Automated Content Delivery (ACD) using MovieLabs Media Manifest Core (MMC).
+The Warner Bros. Discovery Content Partner Hub provides technical specifications and APIs for content partners to deliver media assets to WBD's supply chain. Supports Automated Content Delivery (ACD) via Aspera P2P and MovieLabs Media Manifest Core (MMC) for technical and configuration metadata delivery.
 
-- **Base URL:** `https://api.warnermediasupplychain.com`
-- **Authentication:** OAuth 2.0 Client Credentials
-- **Partner Hub:** [https://partnerhub.warnermedia.com/specifications-and-guides](https://partnerhub.warnermedia.com/specifications-and-guides)
+- **Human URL:** [https://partnerhub.warnermedia.com/specifications-and-guides](https://partnerhub.warnermedia.com/specifications-and-guides)
+- **Base URL:** `https://partnerhub.warnermedia.com`
 
-## Artifacts
+#### Tags
 
-### OpenAPI Specifications
+- Content Delivery
+- Media Supply Chain
+- Metadata
+- Media Ingest
 
-| Spec | Description |
-|------|-------------|
-| [warner-bros-discovery-content-partner-openapi.yml](openapi/warner-bros-discovery-content-partner-openapi.yml) | Content Partner API — deliveries, metadata, assets, validation |
+#### Properties
 
-### Spectral Rules
+- [Documentation](https://partnerhub.warnermedia.com/specifications-and-guides)
+- [OpenAPI](openapi/warner-bros-discovery-content-partner-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/warner-bros-discovery-content-partner.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/warner-bros-discovery-content-partner.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Spectral Rules](rules/warner-bros-discovery-rules.yml)
+- [JSON Schema](json-schema/warner-bros-discovery-content-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [J S O N L D Context](json-ld/warner-bros-discovery-context.jsonld)
+- [Vocabulary](vocabulary/warner-bros-discovery-vocabulary.yml)
 
-| Ruleset | Description |
-|---------|-------------|
-| [warner-bros-discovery-rules.yml](rules/warner-bros-discovery-rules.yml) | Spectral ruleset for WBD API conventions |
+## Common Properties
 
-### Naftiko Capabilities
-
-#### Shared Per-API Definitions
-
-| File | Description |
-|------|-------------|
-| [capabilities/shared/content-partner.yaml](capabilities/shared/content-partner.yaml) | WBD Content Partner API definition |
-
-#### Workflow Capabilities
-
-| Workflow | Description | Tools |
-|----------|-------------|-------|
-| [content-delivery.yaml](capabilities/content-delivery.yaml) | Content delivery and supply chain operations | 6 tools |
-
-### JSON Schemas
-
-| Schema | Description |
-|--------|-------------|
-| [warner-bros-discovery-content-schema.json](json-schema/warner-bros-discovery-content-schema.json) | Content delivery data schema |
-
-### JSON Structures
-
-| Structure | Description |
-|-----------|-------------|
-| [warner-bros-discovery-content-structure.json](json-structure/warner-bros-discovery-content-structure.json) | Content delivery structure documentation |
-
-### JSON-LD Contexts
-
-| Context | Description |
-|---------|-------------|
-| [warner-bros-discovery-context.jsonld](json-ld/warner-bros-discovery-context.jsonld) | JSON-LD context (schema.org + MovieLabs aligned) |
-
-### Examples
-
-| Example | Description |
-|---------|-------------|
-| [warner-bros-discovery-listDeliveries-example.json](examples/warner-bros-discovery-listDeliveries-example.json) | List deliveries request/response example |
-
-### Vocabulary
-
-| File | Description |
-|------|-------------|
-| [warner-bros-discovery-vocabulary.yml](vocabulary/warner-bros-discovery-vocabulary.yml) | WBD content delivery vocabulary |
-
-## Open Source Projects
-
-- [gimme-aws-creds](https://github.com/WarnerMedia/gimme-aws-creds) — Python CLI for obtaining AWS credentials via Okta
-- [antiope-aws-module](https://github.com/WarnerMedia/antiope-aws-module) — AWS inventory and security tooling
-- [mux.js](https://github.com/warnerbros/mux.js) — JavaScript library for video segment parsing
+- [LinkedIn](https://www.linkedin.com/company/warner-bros-discovery)
+- [Website](https://www.wbd.com/)
+- [Portal](https://partnerhub.warnermedia.com/)
+- [Documentation](https://partnerhub.warnermedia.com/specifications-and-guides)
+- [GitHub Organization](https://github.com/WarnerMedia)
+- [GitHub Organization](https://github.com/warnerbros)
+- [Website](https://www.max.com/)
+- [Portal](https://developer.wbd.com/)
 
 ## Maintainers
 
-**Kin Lane** — [kin@apievangelist.com](mailto:kin@apievangelist.com)
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

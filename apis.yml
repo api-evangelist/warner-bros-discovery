@@ -14,46 +14,39 @@ type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 position: Consumer
-description: Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes the world's
-  most differentiated and complete portfolio of branded content across television, film, and streaming. WBD operates the Max
-  streaming platform, Warner Bros. film studio, HBO, CNN, Discovery, TNT, TBS, and many other brands. The company provides
-  content partner APIs for media supply chain integration and maintains open source projects through its engineering teams.
+description: >-
+  Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes the world's
+  most differentiated and complete portfolio of branded content across television, film, and streaming. WBD operates the
+  Max streaming platform, Warner Bros. film studio, HBO, CNN, Discovery, TNT, TBS, and many other brands. The company
+  provides content partner APIs for media supply chain integration and maintains open source projects through its
+  engineering teams.
 apis:
   - aid: warner-bros-discovery:wbd-content-partner-api
     name: Warner Bros. Discovery Content Partner API
     tags:
-    - Content Delivery
-    - Media Supply Chain
-    - Metadata
-    - Media Ingest
+      - Content Delivery
+      - Media Supply Chain
+      - Metadata
+      - Media Ingest
     image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://partnerhub.warnermedia.com
     humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
     properties:
-    - url: https://partnerhub.warnermedia.com/specifications-and-guides
-      type: Documentation
-    - url: openapi/warner-bros-discovery-content-partner-openapi.yml
-      type: OpenAPI
-    - url: rules/warner-bros-discovery-rules.yml
-      type: SpectralRules
-    - url: capabilities/content-delivery.yaml
-      type: NaftikoCapabilities
-    - url: json-schema/warner-bros-discovery-content-schema.json
-      type: JSONSchema
-    - url: json-ld/warner-bros-discovery-context.jsonld
-      type: JSONLDContext
-    - url: vocabulary/warner-bros-discovery-vocabulary.yml
-      type: Vocabulary
-    - type: NaftikoCapability
-      url: capabilities/content-partner-assets.yaml
-    - type: NaftikoCapability
-      url: capabilities/content-partner-deliveries.yaml
-    - type: NaftikoCapability
-      url: capabilities/content-partner-metadata.yaml
-    - type: NaftikoCapability
-      url: capabilities/content-partner-status.yaml
-    description: The Warner Bros. Discovery Content Partner Hub provides technical specifications and APIs for content partners
-      to deliver media assets to WBD's supply chain. Supports Automated Content Delivery (ACD) via Aspera P2P and MovieLabs
+      - url: https://partnerhub.warnermedia.com/specifications-and-guides
+        type: Documentation
+      - url: openapi/warner-bros-discovery-content-partner-openapi.yml
+        type: OpenAPI
+      - url: rules/warner-bros-discovery-rules.yml
+        type: SpectralRules
+      - url: json-schema/warner-bros-discovery-content-schema.json
+        type: JSONSchema
+      - url: json-ld/warner-bros-discovery-context.jsonld
+        type: JSONLDContext
+      - url: vocabulary/warner-bros-discovery-vocabulary.yml
+        type: Vocabulary
+    description: >-
+      The Warner Bros. Discovery Content Partner Hub provides technical specifications and APIs for content partners to
+      deliver media assets to WBD's supply chain. Supports Automated Content Delivery (ACD) via Aspera P2P and MovieLabs
       Media Manifest Core (MMC) for technical and configuration metadata delivery.
 common:
   - type: LinkedIn
