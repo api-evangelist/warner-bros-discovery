@@ -11,7 +11,7 @@ tags:
   - Television
   - Film
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 position: Consumer
 description: >-
@@ -28,7 +28,7 @@ apis:
       - Media Supply Chain
       - Metadata
       - Media Ingest
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://partnerhub.warnermedia.com
     humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
     properties:
