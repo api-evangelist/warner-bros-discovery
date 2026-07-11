@@ -49,6 +49,8 @@ apis:
       deliver media assets to WBD's supply chain. Supports Automated Content Delivery (ACD) via Aspera P2P and MovieLabs
       Media Manifest Core (MMC) for technical and configuration metadata delivery.
 common:
+  - type: DomainSecurity
+    url: security/warner-bros-discovery-domain-security.yml
   - type: Authentication
     url: authentication/warner-bros-discovery-authentication.yml
   - type: OAuthScopes

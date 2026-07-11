@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/warner-bros-discovery-content-partner-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.warnermedia.com/oauth/token
+    scopes: 4
+  description: OAuth 2.0 client credentials flow for partner authentication
+  sources:
+  - openapi/warner-bros-discovery-content-partner-openapi.yml
