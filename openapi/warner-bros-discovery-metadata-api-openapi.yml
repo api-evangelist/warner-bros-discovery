@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Warner Bros. Discovery Content Partner Assets Metadata API
+  description: The Warner Bros. Discovery Content Partner API enables content partners to deliver media assets and metadata to WBD's media supply chain. The API supports Automated Content Delivery (ACD) for high-volume media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and delivery status tracking. Partners use this API to submit content for distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.
+  version: 1.0.0
+  contact:
+    name: Warner Bros. Discovery Content Partner Support
+    url: https://partnerhub.warnermedia.com/
+  termsOfService: https://www.wbd.com/terms-of-service
+servers:
+- url: https://api.warnermediasupplychain.com
+  description: WBD Media Supply Chain API
+security:
+- OAuth2:
+  - content:read
+tags:
+- name: Metadata
+  description: Content metadata and manifest submission
+paths:
+  /v1/metadata:
+    post:
+      operationId: submitMetadata
+      summary: Submit Metadata
+      description: Submit content metadata using the MovieLabs Media Manifest Core (MMC) format. Used for Automated Content Delivery (ACD) integration.
+      tags:
+      - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataSubmissionRequest'
+      responses:
+        '202':
+          description: Metadata accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataSubmissionResponse'
+        '400':
+          description: Invalid metadata format
+        '401':
+          description: Unauthorized
+  /v1/metadata/validate:
+    post:
+      operationId: validateMetadata
+      summary: Validate Metadata
+      description: Validate metadata against WBD's MMC schema requirements before submission. Returns validation errors and warnings.
+      tags:
+      - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataValidationRequest'
+      responses:
+        '200':
+          description: Validation results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataValidationResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    MetadataValidationRequest:
+      type: object
+      required:
+      - manifest
+      properties:
+        manifest:
+          type: object
+          description: MMC manifest to validate
+    MetadataSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Metadata submission identifier
+        status:
+          type: string
+          enum:
+          - accepted
+          - processing
+        message:
+          type: string
+    MetadataValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the metadata is valid
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              field:
+                type: string
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    MetadataSubmissionRequest:
+      type: object
+      required:
+      - manifest
+      properties:
+        deliveryId:
+          type: string
+          description: Associated delivery identifier
+        manifest:
+          type: object
+          description: MovieLabs MMC manifest object
+        languageCode:
+          type: string
+          description: BCP-47 language code for primary content language
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials flow for partner authentication
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.warnermedia.com/oauth/token
+          scopes:
+            content:read: Read content delivery information
+            content:write: Submit content deliveries
+            metadata:read: Read metadata submissions
+            metadata:write: Submit metadata

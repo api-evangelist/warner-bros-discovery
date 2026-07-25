@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Warner Bros. Discovery Content Partner Assets Status API
+  description: The Warner Bros. Discovery Content Partner API enables content partners to deliver media assets and metadata to WBD's media supply chain. The API supports Automated Content Delivery (ACD) for high-volume media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and delivery status tracking. Partners use this API to submit content for distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.
+  version: 1.0.0
+  contact:
+    name: Warner Bros. Discovery Content Partner Support
+    url: https://partnerhub.warnermedia.com/
+  termsOfService: https://www.wbd.com/terms-of-service
+servers:
+- url: https://api.warnermediasupplychain.com
+  description: WBD Media Supply Chain API
+security:
+- OAuth2:
+  - content:read
+tags:
+- name: Status
+  description: Delivery and validation status tracking
+paths:
+  /v1/deliveries/{deliveryId}/status:
+    get:
+      operationId: getDeliveryStatus
+      summary: Get Delivery Status
+      description: Retrieve the processing status of a delivery including validation results, ingest progress, and any error messages.
+      tags:
+      - Status
+      parameters:
+      - name: deliveryId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Unique delivery identifier
+      responses:
+        '200':
+          description: Delivery status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryStatusResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Delivery not found
+components:
+  schemas:
+    DeliveryStatus:
+      type: object
+      properties:
+        deliveryId:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - failed
+          - rejected
+        stage:
+          type: string
+          description: Current processing stage
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Processing progress percentage
+        validationResults:
+          type: object
+          properties:
+            valid:
+              type: boolean
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  field:
+                    type: string
+            warnings:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    DeliveryStatusResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DeliveryStatus'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials flow for partner authentication
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.warnermedia.com/oauth/token
+          scopes:
+            content:read: Read content delivery information
+            content:write: Submit content deliveries
+            metadata:read: Read metadata submissions
+            metadata:write: Submit metadata

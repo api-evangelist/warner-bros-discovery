@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Warner Bros. Discovery Content Partner Assets API
+  description: The Warner Bros. Discovery Content Partner API enables content partners to deliver media assets and metadata to WBD's media supply chain. The API supports Automated Content Delivery (ACD) for high-volume media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and delivery status tracking. Partners use this API to submit content for distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.
+  version: 1.0.0
+  contact:
+    name: Warner Bros. Discovery Content Partner Support
+    url: https://partnerhub.warnermedia.com/
+  termsOfService: https://www.wbd.com/terms-of-service
+servers:
+- url: https://api.warnermediasupplychain.com
+  description: WBD Media Supply Chain API
+security:
+- OAuth2:
+  - content:read
+tags:
+- name: Assets
+  description: Media asset management
+paths:
+  /v1/assets:
+    get:
+      operationId: listAssets
+      summary: List Assets
+      description: List media assets available in the partner's delivery account.
+      tags:
+      - Assets
+      parameters:
+      - name: deliveryId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter assets by delivery ID
+      - name: assetType
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - video
+          - audio
+          - subtitle
+          - image
+          - document
+        description: Filter assets by type
+      responses:
+        '200':
+          description: List of assets returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetListResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset identifier
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - subtitle
+          - image
+          - document
+          description: Asset type
+        filename:
+          type: string
+          description: Asset filename
+        size:
+          type: integer
+          description: File size in bytes
+        checksum:
+          type: string
+          description: MD5 checksum for integrity verification
+        languageCode:
+          type: string
+          description: BCP-47 language code if applicable
+        uploadedAt:
+          type: string
+          format: date-time
+    AssetListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials flow for partner authentication
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.warnermedia.com/oauth/token
+          scopes:
+            content:read: Read content delivery information
+            content:write: Submit content deliveries
+            metadata:read: Read metadata submissions
+            metadata:write: Submit metadata
