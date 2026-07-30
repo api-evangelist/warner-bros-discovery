@@ -1,5 +1,18 @@
 aid: warner-bros-discovery
 url: https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml
+accessModel:
+  pricing: enterprise
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Requires approval
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 created: '2026-03-21'
 modified: '2026-05-19'
 name: Warner Bros. Discovery
@@ -11,7 +24,7 @@ tags:
   - Television
   - Film
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/warner-bros-discovery.png
 access: 3rd-Party
 position: Consumer
 description: >-
@@ -21,33 +34,86 @@ description: >-
   provides content partner APIs for media supply chain integration and maintains open source projects through its
   engineering teams.
 apis:
-  - aid: warner-bros-discovery:wbd-content-partner-api
-    name: Warner Bros. Discovery Content Partner API
-    tags:
-      - Content Delivery
-      - Media Supply Chain
-      - Metadata
-      - Media Ingest
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://partnerhub.warnermedia.com
-    humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
-    properties:
-      - url: https://partnerhub.warnermedia.com/specifications-and-guides
-        type: Documentation
-      - url: openapi/warner-bros-discovery-content-partner-openapi.yml
-        type: OpenAPI
-      - url: rules/warner-bros-discovery-rules.yml
-        type: SpectralRules
-      - url: json-schema/warner-bros-discovery-content-schema.json
-        type: JSONSchema
-      - url: json-ld/warner-bros-discovery-context.jsonld
-        type: JSONLDContext
-      - url: vocabulary/warner-bros-discovery-vocabulary.yml
-        type: Vocabulary
-    description: >-
-      The Warner Bros. Discovery Content Partner Hub provides technical specifications and APIs for content partners to
-      deliver media assets to WBD's supply chain. Supports Automated Content Delivery (ACD) via Aspera P2P and MovieLabs
-      Media Manifest Core (MMC) for technical and configuration metadata delivery.
+- aid: warner-bros-discovery:warner-bros-discovery-assets-api
+  name: Warner Bros. Discovery Assets API
+  description: Media asset management
+  humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
+  baseURL: https://partnerhub.warnermedia.com
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-bros-discovery-assets-api-openapi.yml
+  - type: Documentation
+    url: https://partnerhub.warnermedia.com/specifications-and-guides
+  - type: SpectralRules
+    url: rules/warner-bros-discovery-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-bros-discovery-content-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-bros-discovery-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-bros-discovery-vocabulary.yml
+- aid: warner-bros-discovery:warner-bros-discovery-deliveries-api
+  name: Warner Bros. Discovery Deliveries API
+  description: Media content delivery management
+  humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
+  baseURL: https://partnerhub.warnermedia.com
+  tags:
+  - Deliveries
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-bros-discovery-deliveries-api-openapi.yml
+  - type: Documentation
+    url: https://partnerhub.warnermedia.com/specifications-and-guides
+  - type: SpectralRules
+    url: rules/warner-bros-discovery-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-bros-discovery-content-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-bros-discovery-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-bros-discovery-vocabulary.yml
+- aid: warner-bros-discovery:warner-bros-discovery-metadata-api
+  name: Warner Bros. Discovery Metadata API
+  description: Content metadata and manifest submission
+  humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
+  baseURL: https://partnerhub.warnermedia.com
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-bros-discovery-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://partnerhub.warnermedia.com/specifications-and-guides
+  - type: SpectralRules
+    url: rules/warner-bros-discovery-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-bros-discovery-content-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-bros-discovery-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-bros-discovery-vocabulary.yml
+- aid: warner-bros-discovery:warner-bros-discovery-status-api
+  name: Warner Bros. Discovery Status API
+  description: Delivery and validation status tracking
+  humanURL: https://partnerhub.warnermedia.com/specifications-and-guides
+  baseURL: https://partnerhub.warnermedia.com
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-bros-discovery-status-api-openapi.yml
+  - type: Documentation
+    url: https://partnerhub.warnermedia.com/specifications-and-guides
+  - type: SpectralRules
+    url: rules/warner-bros-discovery-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-bros-discovery-content-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-bros-discovery-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-bros-discovery-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/warner-bros-discovery-agentic-access.yml
