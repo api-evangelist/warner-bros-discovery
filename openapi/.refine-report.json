@@ -1,0 +1,20 @@
+{
+  "provider": "warner-bros-discovery",
+  "sources": [
+    "warner-bros-discovery-assets-api-openapi.yml",
+    "warner-bros-discovery-deliveries-api-openapi.yml",
+    "warner-bros-discovery-metadata-api-openapi.yml",
+    "warner-bros-discovery-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "warner-bros-discovery-assets-api-openapi.yml",
+    "warner-bros-discovery-deliveries-api-openapi.yml",
+    "warner-bros-discovery-metadata-api-openapi.yml",
+    "warner-bros-discovery-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

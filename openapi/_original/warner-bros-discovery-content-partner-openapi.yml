@@ -1,0 +1,511 @@
+openapi: 3.0.3
+info:
+  title: Warner Bros. Discovery Content Partner API
+  description: >-
+    The Warner Bros. Discovery Content Partner API enables content partners to
+    deliver media assets and metadata to WBD's media supply chain. The API
+    supports Automated Content Delivery (ACD) for high-volume media ingest using
+    the MovieLabs Media Manifest Core (MMC) specification, metadata validation,
+    and delivery status tracking. Partners use this API to submit content for
+    distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.
+  version: 1.0.0
+  contact:
+    name: Warner Bros. Discovery Content Partner Support
+    url: https://partnerhub.warnermedia.com/
+  termsOfService: https://www.wbd.com/terms-of-service
+servers:
+  - url: https://api.warnermediasupplychain.com
+    description: WBD Media Supply Chain API
+tags:
+  - name: Deliveries
+    description: Media content delivery management
+  - name: Metadata
+    description: Content metadata and manifest submission
+  - name: Status
+    description: Delivery and validation status tracking
+  - name: Assets
+    description: Media asset management
+paths:
+  /v1/deliveries:
+    get:
+      operationId: listDeliveries
+      summary: List Deliveries
+      description: >-
+        List all media content deliveries submitted by the partner. Supports
+        filtering by status, date range, and content type.
+      tags:
+        - Deliveries
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - pending
+              - processing
+              - completed
+              - failed
+              - rejected
+          description: Filter deliveries by status
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter deliveries created on or after this date
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter deliveries created before or on this date
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+      responses:
+        '200':
+          description: List of deliveries returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryListResponse'
+        '401':
+          description: Unauthorized - invalid or missing credentials
+        '403':
+          description: Forbidden - insufficient permissions
+    post:
+      operationId: createDelivery
+      summary: Create Delivery
+      description: >-
+        Submit a new content delivery to Warner Bros. Discovery's media supply
+        chain. The delivery contains references to media assets and a MovieLabs
+        MMC manifest with metadata.
+      tags:
+        - Deliveries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDeliveryRequest'
+      responses:
+        '201':
+          description: Delivery created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryResponse'
+        '400':
+          description: Invalid request payload
+        '401':
+          description: Unauthorized
+  /v1/deliveries/{deliveryId}:
+    get:
+      operationId: getDelivery
+      summary: Get Delivery
+      description: Retrieve the details and current status of a specific delivery.
+      tags:
+        - Deliveries
+      parameters:
+        - name: deliveryId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique delivery identifier
+      responses:
+        '200':
+          description: Delivery details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Delivery not found
+  /v1/deliveries/{deliveryId}/status:
+    get:
+      operationId: getDeliveryStatus
+      summary: Get Delivery Status
+      description: >-
+        Retrieve the processing status of a delivery including validation
+        results, ingest progress, and any error messages.
+      tags:
+        - Status
+      parameters:
+        - name: deliveryId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique delivery identifier
+      responses:
+        '200':
+          description: Delivery status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryStatusResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Delivery not found
+  /v1/metadata:
+    post:
+      operationId: submitMetadata
+      summary: Submit Metadata
+      description: >-
+        Submit content metadata using the MovieLabs Media Manifest Core (MMC)
+        format. Used for Automated Content Delivery (ACD) integration.
+      tags:
+        - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataSubmissionRequest'
+      responses:
+        '202':
+          description: Metadata accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataSubmissionResponse'
+        '400':
+          description: Invalid metadata format
+        '401':
+          description: Unauthorized
+  /v1/metadata/validate:
+    post:
+      operationId: validateMetadata
+      summary: Validate Metadata
+      description: >-
+        Validate metadata against WBD's MMC schema requirements before
+        submission. Returns validation errors and warnings.
+      tags:
+        - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataValidationRequest'
+      responses:
+        '200':
+          description: Validation results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataValidationResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/assets:
+    get:
+      operationId: listAssets
+      summary: List Assets
+      description: List media assets available in the partner's delivery account.
+      tags:
+        - Assets
+      parameters:
+        - name: deliveryId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter assets by delivery ID
+        - name: assetType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - video
+              - audio
+              - subtitle
+              - image
+              - document
+          description: Filter assets by type
+      responses:
+        '200':
+          description: List of assets returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetListResponse'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials flow for partner authentication
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.warnermedia.com/oauth/token
+          scopes:
+            content:read: Read content delivery information
+            content:write: Submit content deliveries
+            metadata:read: Read metadata submissions
+            metadata:write: Submit metadata
+  schemas:
+    Delivery:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique delivery identifier
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+            - rejected
+          description: Current delivery status
+        title:
+          type: string
+          description: Content title for this delivery
+        contentType:
+          type: string
+          enum:
+            - feature
+            - series
+            - episode
+            - short
+            - documentary
+            - promotional
+          description: Type of content being delivered
+        manifestPath:
+          type: string
+          description: Path to the MMC manifest file
+        createdAt:
+          type: string
+          format: date-time
+          description: Delivery creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+          description: List of media assets in this delivery
+    DeliveryListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delivery'
+        total:
+          type: integer
+          description: Total number of deliveries matching the filter
+        limit:
+          type: integer
+        offset:
+          type: integer
+    DeliveryResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Delivery'
+    CreateDeliveryRequest:
+      type: object
+      required:
+        - title
+        - contentType
+        - manifestPath
+      properties:
+        title:
+          type: string
+          description: Content title
+        contentType:
+          type: string
+          enum:
+            - feature
+            - series
+            - episode
+            - short
+            - documentary
+            - promotional
+        manifestPath:
+          type: string
+          description: Path to the MMC manifest file in Aspera
+        notes:
+          type: string
+          description: Optional delivery notes
+    DeliveryStatus:
+      type: object
+      properties:
+        deliveryId:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+            - rejected
+        stage:
+          type: string
+          description: Current processing stage
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Processing progress percentage
+        validationResults:
+          type: object
+          properties:
+            valid:
+              type: boolean
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  field:
+                    type: string
+            warnings:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    DeliveryStatusResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DeliveryStatus'
+    MetadataSubmissionRequest:
+      type: object
+      required:
+        - manifest
+      properties:
+        deliveryId:
+          type: string
+          description: Associated delivery identifier
+        manifest:
+          type: object
+          description: MovieLabs MMC manifest object
+        languageCode:
+          type: string
+          description: BCP-47 language code for primary content language
+    MetadataSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Metadata submission identifier
+        status:
+          type: string
+          enum:
+            - accepted
+            - processing
+        message:
+          type: string
+    MetadataValidationRequest:
+      type: object
+      required:
+        - manifest
+      properties:
+        manifest:
+          type: object
+          description: MMC manifest to validate
+    MetadataValidationResponse:
+      type: object
+      properties:
+        valid:
+          type: boolean
+          description: Whether the metadata is valid
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              field:
+                type: string
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset identifier
+        type:
+          type: string
+          enum:
+            - video
+            - audio
+            - subtitle
+            - image
+            - document
+          description: Asset type
+        filename:
+          type: string
+          description: Asset filename
+        size:
+          type: integer
+          description: File size in bytes
+        checksum:
+          type: string
+          description: MD5 checksum for integrity verification
+        languageCode:
+          type: string
+          description: BCP-47 language code if applicable
+        uploadedAt:
+          type: string
+          format: date-time
+    AssetListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
+security:
+  - OAuth2:
+      - content:read
