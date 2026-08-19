@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Warner Bros. Discovery Content Partner Assets Status API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://auth.warnermedia.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Delivery Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.warnermediasupplychain.com/v1/deliveries/:deliveryId/status",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique delivery identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the processing status of a delivery including validation results, ingest progress, and any error messages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

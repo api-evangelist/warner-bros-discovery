@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "cdf41f53-3959-484d-bc84-63fd89b9dd14",
+      "name": "Assets",
+      "description": {
+        "content": "Media asset management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c1381a3-dc41-478b-ba00-a7db490745f1",
+          "name": "List Assets",
+          "request": {
+            "name": "List Assets",
+            "description": {
+              "content": "List media assets available in the partner's delivery account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deliveryId",
+                  "value": "<string>",
+                  "description": "Filter assets by delivery ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetType",
+                  "value": "<string>",
+                  "description": "Filter assets by type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c74a5353-3b59-4da8-ab15-eca2243efc97",
+              "name": "List of assets returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deliveryId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"document\",\n      \"filename\": \"string\",\n      \"size\": 9360,\n      \"checksum\": \"string\",\n      \"languageCode\": \"string\",\n      \"uploadedAt\": \"1990-09-02T00:18:45.000Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"document\",\n      \"filename\": \"string\",\n      \"size\": 3382,\n      \"checksum\": \"string\",\n      \"languageCode\": \"string\",\n      \"uploadedAt\": \"1990-07-28T01:49:44.789Z\"\n    }\n  ],\n  \"total\": 3876\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9893cbcf-76ca-4bad-953d-8e5aa910f474",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deliveryId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.warnermediasupplychain.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "content:read content:write metadata:read metadata:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.warnermedia.com/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92d0c307-342d-4a7e-9faf-00a2771366b3",
+    "name": "Warner Bros. Discovery Content Partner Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Warner Bros. Discovery Content Partner API enables content partners to deliver media assets and metadata to WBD's media supply chain. The API supports Automated Content Delivery (ACD) for high-volume media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and delivery status tracking. Partners use this API to submit content for distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.\n\nContact Support:\n Name: Warner Bros. Discovery Content Partner Support",
+      "type": "text/plain"
+    }
+  }
+}
