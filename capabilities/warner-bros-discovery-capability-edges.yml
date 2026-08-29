@@ -1,0 +1,48 @@
+slug: warner-bros-discovery
+provider: Warner Bros. Discovery
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Assets
+  spec_file: warner-bros-discovery-assets-api-openapi.yml
+  capability_id: BC-3710
+  capability_id_l1: BC-3710
+  capability_name: Media Asset Management
+  confidence: 0.75
+  evidence: enables content partners to deliver media assets and metadata to WBD's media supply chain
+    ... GET /v1/assets listAssets
+  reason: Listing of media assets submitted into the studio's media supply chain is media asset management;
+    only a read operation is exposed so the specific sub-capability (ingest vs cataloguing) is not determinable.
+- tag: Deliveries
+  spec_file: warner-bros-discovery-deliveries-api-openapi.yml
+  capability_id: BC-3710.10
+  capability_id_l1: BC-3710
+  capability_name: Asset Ingest & Quality Control
+  confidence: 0.75
+  evidence: POST /v1/deliveries createDelivery ... supports Automated Content Delivery (ACD) for high-volume
+    media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and
+    delivery status tracking
+  reason: Partners submit source media packages that are ingested and validated into WBD's asset platform,
+    matching Asset Ingest & Quality Control; some overlap with metadata cataloguing keeps confidence below
+    0.9.
+- tag: Metadata
+  spec_file: warner-bros-discovery-metadata-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.75
+  evidence: POST /v1/metadata submitMetadata 'Submit Metadata'; POST /v1/metadata/validate 'Validate Metadata'
+    — partners 'deliver media assets and metadata to WBD's media supply chain'
+  reason: Operations submit and validate descriptive/technical metadata for media assets entering WBD's
+    media supply chain, which is metadata cataloguing within media asset management. Some ambiguity between
+    metadata cataloguing and ingest QC, hence not maximal confidence.

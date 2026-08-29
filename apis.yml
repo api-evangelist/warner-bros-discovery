@@ -126,6 +126,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/warner-bros-discovery-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/warner-bros-discovery-capability-edges.yml
+    name: Warner Bros. Discovery Business Capability Map
   - type: AgenticAccess
     url: agentic-access/warner-bros-discovery-agentic-access.yml
   - type: DomainSecurity
