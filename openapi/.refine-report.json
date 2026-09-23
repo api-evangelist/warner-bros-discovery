@@ -1,10 +1,7 @@
 {
   "provider": "warner-bros-discovery",
   "sources": [
-    "warner-bros-discovery-assets-api-openapi.yml",
-    "warner-bros-discovery-deliveries-api-openapi.yml",
-    "warner-bros-discovery-metadata-api-openapi.yml",
-    "warner-bros-discovery-status-api-openapi.yml"
+    "_original/warner-bros-discovery-content-partner-openapi.yml"
   ],
   "outputs": [
     "warner-bros-discovery-assets-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "warner-bros-discovery-content-partner-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "warner-bros-discovery-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "warner-bros-discovery-deliveries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "warner-bros-discovery-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "warner-bros-discovery-status-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

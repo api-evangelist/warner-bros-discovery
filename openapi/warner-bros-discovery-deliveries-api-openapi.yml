@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Warner Bros. Discovery Content Partner Assets Deliveries API
+  title: Warner Bros. Discovery Content Partner Deliveries API
   description: The Warner Bros. Discovery Content Partner API enables content partners to deliver media assets and metadata to WBD's media supply chain. The API supports Automated Content Delivery (ACD) for high-volume media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and delivery status tracking. Partners use this API to submit content for distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.
   version: 1.0.0
   contact:
@@ -157,6 +157,50 @@ components:
         notes:
           type: string
           description: Optional delivery notes
+    DeliveryListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delivery'
+        total:
+          type: integer
+          description: Total number of deliveries matching the filter
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset identifier
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - subtitle
+          - image
+          - document
+          description: Asset type
+        filename:
+          type: string
+          description: Asset filename
+        size:
+          type: integer
+          description: File size in bytes
+        checksum:
+          type: string
+          description: MD5 checksum for integrity verification
+        languageCode:
+          type: string
+          description: BCP-47 language code if applicable
+        uploadedAt:
+          type: string
+          format: date-time
     Delivery:
       type: object
       properties:
@@ -201,50 +245,6 @@ components:
           items:
             $ref: '#/components/schemas/Asset'
           description: List of media assets in this delivery
-    Asset:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Asset identifier
-        type:
-          type: string
-          enum:
-          - video
-          - audio
-          - subtitle
-          - image
-          - document
-          description: Asset type
-        filename:
-          type: string
-          description: Asset filename
-        size:
-          type: integer
-          description: File size in bytes
-        checksum:
-          type: string
-          description: MD5 checksum for integrity verification
-        languageCode:
-          type: string
-          description: BCP-47 language code if applicable
-        uploadedAt:
-          type: string
-          format: date-time
-    DeliveryListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Delivery'
-        total:
-          type: integer
-          description: Total number of deliveries matching the filter
-        limit:
-          type: integer
-        offset:
-          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

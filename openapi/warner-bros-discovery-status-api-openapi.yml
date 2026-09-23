@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Warner Bros. Discovery Content Partner Assets Status API
+  title: Warner Bros. Discovery Content Partner Status API
   description: The Warner Bros. Discovery Content Partner API enables content partners to deliver media assets and metadata to WBD's media supply chain. The API supports Automated Content Delivery (ACD) for high-volume media ingest using the MovieLabs Media Manifest Core (MMC) specification, metadata validation, and delivery status tracking. Partners use this API to submit content for distribution across Max, HBO, Warner Bros., Discovery, CNN, and other WBD brands.
   version: 1.0.0
   contact:
