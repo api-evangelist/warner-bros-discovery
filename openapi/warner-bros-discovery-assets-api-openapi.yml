@@ -54,6 +54,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    AssetListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
     Asset:
       type: object
       properties:
@@ -84,15 +93,6 @@ components:
         uploadedAt:
           type: string
           format: date-time
-    AssetListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-        total:
-          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

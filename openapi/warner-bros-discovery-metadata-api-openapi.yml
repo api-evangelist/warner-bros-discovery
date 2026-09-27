@@ -67,6 +67,20 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    MetadataSubmissionRequest:
+      type: object
+      required:
+      - manifest
+      properties:
+        deliveryId:
+          type: string
+          description: Associated delivery identifier
+        manifest:
+          type: object
+          description: MovieLabs MMC manifest object
+        languageCode:
+          type: string
+          description: BCP-47 language code for primary content language
     MetadataValidationRequest:
       type: object
       required:
@@ -114,20 +128,6 @@ components:
           - processing
         message:
           type: string
-    MetadataSubmissionRequest:
-      type: object
-      required:
-      - manifest
-      properties:
-        deliveryId:
-          type: string
-          description: Associated delivery identifier
-        manifest:
-          type: object
-          description: MovieLabs MMC manifest object
-        languageCode:
-          type: string
-          description: BCP-47 language code for primary content language
   securitySchemes:
     OAuth2:
       type: oauth2
