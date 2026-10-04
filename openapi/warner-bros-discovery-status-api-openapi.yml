@@ -44,6 +44,11 @@ paths:
           description: Delivery not found
 components:
   schemas:
+    DeliveryStatusResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DeliveryStatus'
     DeliveryStatus:
       type: object
       properties:
@@ -90,11 +95,6 @@ components:
                     type: string
                   message:
                     type: string
-    DeliveryStatusResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/DeliveryStatus'
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -127,66 +127,6 @@ paths:
           description: Delivery not found
 components:
   schemas:
-    DeliveryResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Delivery'
-    Asset:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Asset identifier
-        type:
-          type: string
-          enum:
-          - video
-          - audio
-          - subtitle
-          - image
-          - document
-          description: Asset type
-        filename:
-          type: string
-          description: Asset filename
-        size:
-          type: integer
-          description: File size in bytes
-        checksum:
-          type: string
-          description: MD5 checksum for integrity verification
-        languageCode:
-          type: string
-          description: BCP-47 language code if applicable
-        uploadedAt:
-          type: string
-          format: date-time
-    CreateDeliveryRequest:
-      type: object
-      required:
-      - title
-      - contentType
-      - manifestPath
-      properties:
-        title:
-          type: string
-          description: Content title
-        contentType:
-          type: string
-          enum:
-          - feature
-          - series
-          - episode
-          - short
-          - documentary
-          - promotional
-        manifestPath:
-          type: string
-          description: Path to the MMC manifest file in Aspera
-        notes:
-          type: string
-          description: Optional delivery notes
     DeliveryListResponse:
       type: object
       properties:
@@ -201,6 +141,11 @@ components:
           type: integer
         offset:
           type: integer
+    DeliveryResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Delivery'
     Delivery:
       type: object
       properties:
@@ -245,6 +190,61 @@ components:
           items:
             $ref: '#/components/schemas/Asset'
           description: List of media assets in this delivery
+    CreateDeliveryRequest:
+      type: object
+      required:
+      - title
+      - contentType
+      - manifestPath
+      properties:
+        title:
+          type: string
+          description: Content title
+        contentType:
+          type: string
+          enum:
+          - feature
+          - series
+          - episode
+          - short
+          - documentary
+          - promotional
+        manifestPath:
+          type: string
+          description: Path to the MMC manifest file in Aspera
+        notes:
+          type: string
+          description: Optional delivery notes
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset identifier
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - subtitle
+          - image
+          - document
+          description: Asset type
+        filename:
+          type: string
+          description: Asset filename
+        size:
+          type: integer
+          description: File size in bytes
+        checksum:
+          type: string
+          description: MD5 checksum for integrity verification
+        languageCode:
+          type: string
+          description: BCP-47 language code if applicable
+        uploadedAt:
+          type: string
+          format: date-time
   securitySchemes:
     OAuth2:
       type: oauth2
