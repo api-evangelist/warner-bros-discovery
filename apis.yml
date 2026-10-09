@@ -126,6 +126,12 @@ apis:
   - type: Vocabulary
     url: vocabulary/warner-bros-discovery-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/warner-bros-discovery-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/warner-bros-discovery-rate-limits.yml
+  - type: FinOps
+    url: finops/warner-bros-discovery-finops.yml
   - type: CapabilityMap
     url: capabilities/warner-bros-discovery-capability-edges.yml
     name: Warner Bros. Discovery Business Capability Map
