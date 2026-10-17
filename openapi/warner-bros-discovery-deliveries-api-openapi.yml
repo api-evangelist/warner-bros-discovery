@@ -127,25 +127,31 @@ paths:
           description: Delivery not found
 components:
   schemas:
-    DeliveryListResponse:
+    CreateDeliveryRequest:
       type: object
+      required:
+      - title
+      - contentType
+      - manifestPath
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Delivery'
-        total:
-          type: integer
-          description: Total number of deliveries matching the filter
-        limit:
-          type: integer
-        offset:
-          type: integer
-    DeliveryResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Delivery'
+        title:
+          type: string
+          description: Content title
+        contentType:
+          type: string
+          enum:
+          - feature
+          - series
+          - episode
+          - short
+          - documentary
+          - promotional
+        manifestPath:
+          type: string
+          description: Path to the MMC manifest file in Aspera
+        notes:
+          type: string
+          description: Optional delivery notes
     Delivery:
       type: object
       properties:
@@ -190,31 +196,6 @@ components:
           items:
             $ref: '#/components/schemas/Asset'
           description: List of media assets in this delivery
-    CreateDeliveryRequest:
-      type: object
-      required:
-      - title
-      - contentType
-      - manifestPath
-      properties:
-        title:
-          type: string
-          description: Content title
-        contentType:
-          type: string
-          enum:
-          - feature
-          - series
-          - episode
-          - short
-          - documentary
-          - promotional
-        manifestPath:
-          type: string
-          description: Path to the MMC manifest file in Aspera
-        notes:
-          type: string
-          description: Optional delivery notes
     Asset:
       type: object
       properties:
@@ -245,6 +226,25 @@ components:
         uploadedAt:
           type: string
           format: date-time
+    DeliveryResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Delivery'
+    DeliveryListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delivery'
+        total:
+          type: integer
+          description: Total number of deliveries matching the filter
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
