@@ -1,0 +1,34 @@
+edges:
+- partner_name: Streaming Video Technology Alliance
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://www.svta.org/svta-member-companies-list/
+  category: streaming video technology alliance
+  contract_reference:
+    register: Streaming Video Technology Alliance member companies (svta.org, wp-json pages API)
+    standard: SVTA specifications (CDN interop, Open Caching, measurement)
+    spec_file: null
+    role: svta-member
+    registered_name: Warner Bros Discovery
+    register_id: Warner Bros Discovery
+    matched_domain: wbd.com
+    matched_by: domain+name-among-holders
+    identity: wikidata Q107074885 'Warner Bros. Discovery' P856 https://www.wbd.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    signal_note: participation only; the list prints no tier
+    detected_by: sweep-streaming-video.py
+    detected: '2026-10-18'
+  detected_by: sweep-streaming-video.py
+  first_seen: '2026-10-18'
+generated: '2026-10-18'
+method: searched
+source:
+- https://dashif.org/members/
+- https://www.svta.org/svta-member-companies-list/
+checked:
+- https://dashif.org/members/
+- https://www.svta.org/svta-member-companies-list/
