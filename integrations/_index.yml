@@ -28,3 +28,53 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: warner-bros-discovery-eidr-entertainment-id-registry
+  label: EIDR (Entertainment ID Registry)
+  partner_name: EIDR (Entertainment ID Registry)
+  category: film / TV content identifier registry
+  type: register
+  channel: standard-directory
+  evidence: https://www.eidr.org/eidr-participants
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: EIDR contributors and participants (eidr.org/eidr-participants)
+    standard: EIDR
+    spec_file: null
+    role: eidr-participant
+    registered_name: Warner Bros. Discovery
+    register_id: https://www.eidr.org/eidr-participants
+    matched_domain: wbd.com
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: a listing on the register, never counted'
+    detected_by: sweep-film-media-identifiers-eidr.py
+    detected: '2026-10-21'
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+    identity: wikidata Q107074885 'Warner Bros. Discovery' P856 https://www.wbd.com/
+    logo_alt: Warner Bros Discovery 200x90
+  status: not-a-workflow
+  arazzo: null
+- slug: warner-bros-discovery-dpp-digital-production-partnership
+  label: DPP (Digital Production Partnership)
+  partner_name: DPP (Digital Production Partnership)
+  category: media supply-chain industry body
+  type: register
+  channel: standard-directory
+  evidence: https://www.thedpp.com/members-directory
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DPP members directory (thedpp.com/members-directory)
+    standard: DPP
+    spec_file: null
+    role: dpp-member
+    registered_name: Warner Bros Discovery
+    register_id: https://www.thedpp.com/members-directory
+    matched_domain: wbd.com
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: a listing on the register, never counted'
+    detected_by: sweep-film-media-identifiers-eidr.py
+    detected: '2026-10-21'
+    dpp_category: content-provider
+  status: not-a-workflow
+  arazzo: null
