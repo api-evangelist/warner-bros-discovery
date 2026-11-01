@@ -1,4 +1,4 @@
-# Warner Bros. Discovery (warner-bros-discovery)
+# Warner Bros. Discovery
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,164 @@
 
 Warner Bros. Discovery is a leading global media and entertainment company that creates and distributes the world's most differentiated and complete portfolio of branded content across television, film, and streaming. WBD operates the Max streaming platform, Warner Bros. film studio, HBO, CNN, Discovery, TNT, TBS, and many other brands. The company provides content partner APIs for media supply chain integration and maintains open source projects through its engineering teams.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/warner-bros-discovery/refs/heads/main/apis.yml)
+**Areas:** Entertainment · Media · Streaming · Content · Television · Film
 
-## Scope
+## Warner Bros. Discovery on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Warner Bros. Discovery is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/warner-bros-discovery/](https://apis.io/providers/warner-bros-discovery/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Entertainment
-- Media
-- Streaming
-- Content
-- Television
-- Film
+- [Warner Bros. Discovery Assets API](https://apis.io/apis/warner-bros-discovery/warner-bros-discovery-assets-api/) — Media asset management
+- [Warner Bros. Discovery Deliveries API](https://apis.io/apis/warner-bros-discovery/warner-bros-discovery-deliveries-api/) — Media content delivery management
+- [Warner Bros. Discovery Metadata API](https://apis.io/apis/warner-bros-discovery/warner-bros-discovery-metadata-api/) — Content metadata and manifest submission
+- [Warner Bros. Discovery Status API](https://apis.io/apis/warner-bros-discovery/warner-bros-discovery-status-api/) — Delivery and validation status tracking
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-21
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Warner Bros. Discovery Content Partner API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Warner Bros. Discovery Content Partner Hub provides technical specifications and APIs for content partners to deliver media assets to WBD's supply chain. Supports Automated Content Delivery (ACD) via Aspera P2P and MovieLabs Media Manifest Core (MMC) for technical and configuration metadata delivery.
+- [Warner Bros Discovery Agentic Access](https://apis.io/agentic-access/warner-bros-discovery/warner-bros-discovery-agentic-access/)
 
-- **Human URL:** [https://partnerhub.warnermedia.com/specifications-and-guides](https://partnerhub.warnermedia.com/specifications-and-guides)
-- **Base URL:** `https://partnerhub.warnermedia.com`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Content Delivery
-- Media Supply Chain
-- Metadata
-- Media Ingest
+- [Warner Bros. Discovery Content Delivery](https://apis.io/schemas/warner-bros-discovery/warner-bros-discovery-content/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://partnerhub.warnermedia.com/specifications-and-guides)
-- [OpenAPI](openapi/warner-bros-discovery-content-partner-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/warner-bros-discovery-content-partner.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/warner-bros-discovery-content-partner.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral Rules](rules/warner-bros-discovery-rules.yml)
-- [JSON Schema](json-schema/warner-bros-discovery-content-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/warner-bros-discovery-context.jsonld)
-- [Vocabulary](vocabulary/warner-bros-discovery-vocabulary.yml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Warner Bros Discovery Content Structure](https://apis.io/json-structure/warner-bros-discovery/warner-bros-discovery-content-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/warner-bros-discovery)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Warner Bros Discovery Context](https://apis.io/jsonld/warner-bros-discovery/warner-bros-discovery-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Warner Bros. Discovery API Vocabulary](https://apis.io/vocabularies/warner-bros-discovery/warner-bros-discovery-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Warner Bros Discovery Listdeliveries Example](https://apis.io/examples/warner-bros-discovery/warner-bros-discovery-listDeliveries-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Warner Bros. Discovery Content Partner Assets API](https://apis.io/collections/warner-bros-discovery/open-warner-bros-discovery-assets-api/)
+- [Warner Bros. Discovery Content Partner API](https://apis.io/collections/warner-bros-discovery/open-warner-bros-discovery-content-partner/)
+- [Warner Bros. Discovery Content Partner Assets Deliveries API](https://apis.io/collections/warner-bros-discovery/open-warner-bros-discovery-deliveries-api/)
+- [Warner Bros. Discovery Content Partner Assets Metadata API](https://apis.io/collections/warner-bros-discovery/open-warner-bros-discovery-metadata-api/)
+- [Warner Bros. Discovery Content Partner Assets Status API](https://apis.io/collections/warner-bros-discovery/open-warner-bros-discovery-status-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Warner Bros. Discovery — jsonschema rules](https://apis.io/rules/warner-bros-discovery/warner-bros-discovery-jsonschema-spectral-rules/)
+- [Warner Bros. Discovery API Rules](https://apis.io/rules/warner-bros-discovery/warner-bros-discovery-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Warner Bros Discovery Authentication](https://apis.io/security/warner-bros-discovery/warner-bros-discovery-authentication/)
+- [Warner Bros Discovery Domain Security](https://apis.io/security/warner-bros-discovery/warner-bros-discovery-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Warner Bros Discovery Scopes](https://apis.io/scopes/warner-bros-discovery/warner-bros-discovery-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Warner Bros Discovery Plans Pricing](https://apis.io/plans/warner-bros-discovery/warner-bros-discovery-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Warner Bros Discovery Rate Limits](https://apis.io/rate-limits/warner-bros-discovery/warner-bros-discovery-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Warner Bros Discovery Finops](https://apis.io/finops/warner-bros-discovery/warner-bros-discovery-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.wbd.com/)
-- [Portal](https://partnerhub.warnermedia.com/)
 - [Documentation](https://partnerhub.warnermedia.com/specifications-and-guides)
-- [GitHub Organization](https://github.com/WarnerMedia)
-- [GitHub Organization](https://github.com/warnerbros)
-- [Website](https://www.max.com/)
-- [Portal](https://developer.wbd.com/)
+- [GitHub](https://github.com/WarnerMedia)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 32.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 5.3 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/warner-bros-discovery/](https://apis.io/providers/warner-bros-discovery/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Warner Bros. Discovery: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/warner-bros-discovery/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
